@@ -1,4 +1,4 @@
-import { BrowserRouter as Router, Switch, Route, Link } from "react-router-dom";
+import { Switch, Route, Link } from "react-router-dom";
 import Login from '../pages/login'
 import Register from '../pages/register'
 
@@ -15,7 +15,7 @@ const routes = [
 
 const Routers = () => {
   return(
-    <Router>
+    <>
       <div>
         <Link to="/login">login</Link>
         <Link to="/register">register</Link>
@@ -31,7 +31,7 @@ const Routers = () => {
           />
         )}
       </Switch>
-    </Router>
+    </>
   )
 }
 
