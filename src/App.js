@@ -1,21 +1,24 @@
-import './App.css';
+import './App.css'
 import Routers from '../src/router/router'
 import { useHistory } from 'react-router-dom'
-import axios from 'axios';
+import Toast from '../src/components/toast'
+// import axios from 'axios';
 
-function App() {
+function App () {
+
   const history = useHistory()
-  axios.get('/api/authentication').then(res => {
-    console.log(res)
-  }).catch(() =>{
-    history.push('/login')
-  })
+  // axios.get('/api/authentication').then(res => {
+  //   console.log(res)
+  // }).catch(() =>{
+  //   history.push('/login')
+  // })
 
   return (
     <div className="App">
-        <Routers/>
+      <Toast type='success' />
+      <Routers/>
     </div>
-  );
+  )
 }
 
-export default App;
+export default App

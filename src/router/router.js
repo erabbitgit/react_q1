@@ -1,6 +1,7 @@
 import { Switch, Route, Link } from "react-router-dom";
 import Login from '../pages/login'
 import Register from '../pages/register'
+import Home from '../pages/home'
 
 const routes = [
   {
@@ -10,6 +11,10 @@ const routes = [
   {
     path: "/register",
     component: Register
+  },
+  {
+    path: "/home",
+    component: Home
   },
 ]
 
