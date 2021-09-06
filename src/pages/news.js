@@ -1,18 +1,18 @@
 import { useHistory } from 'react-router-dom'
-const Home = () => {
+const News = () => {
   const history = useHistory()
-  const goNews = () => {
-    history.push('/news')
+  const goHome = () => {
+    history.push('/home')
   }
   return(
     <>
-    <h1>Home Page</h1>
+      <h1>News</h1>
       <button
         className="block text-center text-blue-600 p-3 duration-300 rounded-sm  hover:text-blue-300 w-3/12 m-auto"
-        onClick={goNews}>最新消息
+        onClick={goHome}>返回首頁
       </button>
     </>
   )
 }
 
-export default Home
+export default News

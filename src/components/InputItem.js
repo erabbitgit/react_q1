@@ -1,17 +1,29 @@
-import { useState } from 'react'
+import {useState, useEffect} from 'react'
+
+let firstRender = true
 
 const InputItem = (props) => {
   const [show, setShow] = useState(true)
   const [touched, setTouched] = useState(false)
-  const [inputValue, setInputValue] = useState('')
-  let inputIsInvalid = touched && !props.valid(inputValue)
+  const [_inputValue, setInputValue] = useState('')
+  let inputIsInvalid = touched && !props.valid.status
 
-  function handleInput (e) {
+  useEffect(() => {
+    if(firstRender){
+      firstRender = false
+      return
+    }
+    if(props.touched){
+      setTouched(true)
+    }
+  },[props.touched])
+
+  function handleInput(e) {
     setInputValue(e.target.value)
     props.change(e.target.value)
   }
 
-  function handleShow () {
+  function handleShow() {
     setShow(!show)
   }
 
@@ -20,11 +32,7 @@ const InputItem = (props) => {
   }
 
   const checkLabel = () => {
-    if (props.label === '密碼' || props.label === '確認密碼') {
-      return true
-    } else {
-      return false
-    }
+    return props.label === '密碼' || props.label === '確認密碼';
   }
   const checkType = (value) => {
     if (checkLabel) {
@@ -56,7 +64,8 @@ const InputItem = (props) => {
                  className={`${show ? 'block' : 'hidden'} h-6 w-6 absolute top-3 right-4`}
                  fill="none" viewBox="0 0 24 24" stroke="currentColor">
               <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"/>
-              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z"/>
+              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2}
+                    d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z"/>
             </svg>
             {/*eyeIcon:隱藏*/}
             <svg onClick={handleShow}
@@ -71,7 +80,7 @@ const InputItem = (props) => {
       </div>
       {inputIsInvalid && (
         <div className="relative text-sm flex items-center">
-          <div className="inline-block text-red-500 text-left absolute left-32">請輸入{props.label}</div>
+          <div className="inline-block text-red-500 text-left absolute left-32">{props.valid.message}</div>
         </div>
       )}
     </div>

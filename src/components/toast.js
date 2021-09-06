@@ -1,4 +1,5 @@
 const Toast = (obj) => {
+  console.log(obj,'---------TOAST');
   return (
     <div className="flex items-center bg-white py-4 px-4 shadow-md rounded-full mb-2 m-auto w-1/6">
       {obj.type === 'success' && (
@@ -26,7 +27,7 @@ const Toast = (obj) => {
           </div>
           {/* message */}
           <div className="text-black max-w-xs ">
-            Error
+            {obj.message}
           </div>
         </>
       )}

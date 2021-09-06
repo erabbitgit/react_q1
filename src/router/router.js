@@ -2,6 +2,8 @@ import { Switch, Route, Link } from "react-router-dom";
 import Login from '../pages/login'
 import Register from '../pages/register'
 import Home from '../pages/home'
+import News from '../pages/news'
+import Error from '../pages/errorPage'
 
 const routes = [
   {
@@ -16,15 +18,19 @@ const routes = [
     path: "/home",
     component: Home
   },
+  {
+    path: "/news",
+    component: News
+  },
+  {
+    path: "*",
+    component: Error
+  },
 ]
 
 const Routers = () => {
   return(
     <>
-      <div>
-        <Link to="/login">login</Link>
-        <Link to="/register">register</Link>
-      </div>
       <Switch>
         {routes.map((route, i) =>
           <Route
